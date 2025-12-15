@@ -268,7 +268,7 @@ void CastTreeViewer::dragEnterEvent(QDragEnterEvent *e) {
     if (e->mimeData()->urls().size() != 1) return;
     TFilePath path(e->mimeData()->urls()[0].toLocalFile().toStdWString());
 
-    if (path.getType() == "tnz")
+    if (path.getType() == "tah")
       m_dropFilePath = path;
     else
       return;

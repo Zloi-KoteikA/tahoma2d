@@ -73,7 +73,7 @@ bool LoadTaskListPopup::execute() {
 //----------------------------------------------------------------------------------------------------------------
 
 LoadTaskPopup::LoadTaskPopup() : FileBrowserPopup(""), m_isRenderTask(true) {
-  addFilterType("tnz");
+  addFilterType("tah");
   setOkText(tr("Add"));
 }
 
@@ -98,7 +98,7 @@ bool LoadTaskPopup::execute() {
   if (!TSystem::doesExistFileOrLevel(fp)) {
     DVGui::error(toQString(fp) + tr(" does not exist."));
     return false;
-  } else if (m_isRenderTask && fp.getType() != "tnz") {
+  } else if (m_isRenderTask && fp.getType() != "tah") {
     DVGui::error(toQString(fp) +
                  tr(" you can load only TNZ files for render task."));
     return false;

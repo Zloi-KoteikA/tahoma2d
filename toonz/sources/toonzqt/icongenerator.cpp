@@ -933,7 +933,7 @@ std::string FileIconRenderer::getId(const TFilePath &path,
                                     const TFrameId &fid) {
   std::string type(path.getType());
 
-  if (type == "tab" || type == "tnz" ||
+  if (type == "tab" || type == "tah" ||
       type == "mesh" ||  // meshes are not currently viewable
       TFileType::isViewable(TFileType::getInfo(path))) {
     std::string fidNumber;
@@ -1154,7 +1154,7 @@ void FileIconRenderer::run() {
     TRaster32P iconRaster;
     std::string type(m_path.getType());
 
-    if (type == "tnz" || type == "tab")
+    if (type == "tah" || type == "tab")
       iconRaster = IconGenerator::generateSceneFileIcon(m_path, iconSize,
                                                         m_fid.getNumber() - 1);
     else if (type == "pli")

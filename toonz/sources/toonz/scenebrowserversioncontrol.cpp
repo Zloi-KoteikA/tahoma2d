@@ -114,7 +114,7 @@ void SceneBrowser::setupVersionControlCommand(QStringList &files, QString &path,
         files.append(QFileInfo(toQString(*it)).fileName());
     }
     // Add sceneIcon (only for scene files)
-    else if (fp.getType() == "tnz") {
+    else if (fp.getType() == "tah") {
       TFilePath iconPath = ToonzScene::getIconPath(fp);
       if (TFileStatus(iconPath).doesExist()) {
         QDir dir(toQString(fp.getParentDir()));
@@ -337,7 +337,7 @@ void SceneBrowser::updateAndEditVersionControl() {
       files.append(QFileInfo(toQString(*it)).fileName());
   }
   // Add sceneIcon (only for scene files)
-  else if (fp.getType() == "tnz") {
+  else if (fp.getType() == "tah") {
     TFilePath iconPath = ToonzScene::getIconPath(fp);
     if (TFileStatus(iconPath).doesExist()) {
       QDir dir(toQString(fp.getParentDir()));

@@ -13,7 +13,7 @@ public:
 public:
   FileTypeData() {
     // Base, hard-coded known file types
-    m_table["tnz"] = TFileType::TOONZSCENE;
+    m_table["tah"] = TFileType::TOONZSCENE;
     m_table["tab"] = TFileType::TABSCENE;
   }
 

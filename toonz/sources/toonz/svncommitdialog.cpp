@@ -503,7 +503,7 @@ void SVNCommitDialog::onStatusRetrieved(const QString &xmlResponse) {
       initTreeWidget();
 
       for (int i = 0; i < filesToPutCount; i++) {
-        if (m_filesToPut.at(i).endsWith(".tnz")) {
+        if (m_filesToPut.at(i).endsWith(".tah")) {
           m_commitSceneContentsCheckBox->show();
           break;
         }
@@ -888,7 +888,7 @@ void SVNCommitDialog::onCommiSceneContentsToggled(bool checked) {
     int fileSize = m_filesToPut.count();
     for (int i = 0; i < fileSize; i++) {
       QString fileName = m_filesToPut.at(i);
-      if (fileName.endsWith(".tnz")) {
+      if (fileName.endsWith(".tah")) {
         QStringList sceneContents =
             vc->getSceneContents(m_workingDir, fileName);
         QDir workingDir(m_workingDir);

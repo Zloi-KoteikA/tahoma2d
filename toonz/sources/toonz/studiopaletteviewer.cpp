@@ -671,7 +671,7 @@ void StudioPaletteTreeViewer::mouseMoveEvent(QMouseEvent *event) {
 void StudioPaletteTreeViewer::startDragDrop() {
   TFilePath path = getCurrentFolderPath();
   if (!path.isEmpty() && (path.getType() == "tpl" || path.getType() == "pli" ||
-                          path.getType() == "tlv" || path.getType() == "tnz")) {
+                          path.getType() == "tlv" || path.getType() == "tah")) {
     QDrag *drag         = new QDrag(this);
     QMimeData *mimeData = new QMimeData;
     QList<QUrl> urls;
@@ -697,7 +697,7 @@ void StudioPaletteTreeViewer::dragEnterEvent(QDragEnterEvent *event) {
     QUrl url = mimeData->urls()[0];
     TFilePath path(url.toLocalFile().toStdWString());
     if (path.isEmpty() || (path.getType() != "tpl" && path.getType() != "pli" &&
-                           path.getType() != "tlv" && path.getType() != "tnz"))
+                           path.getType() != "tlv" && path.getType() != "tah"))
       return;
     event->acceptProposedAction();
   } else if (paletteData && !paletteData->hasStyleIndeces())
@@ -764,7 +764,7 @@ void StudioPaletteTreeViewer::dropEvent(QDropEvent *event) {
         assert(level && level->getSimpleLevel());
         palette = level->getSimpleLevel()->getPalette();
         path    = level->getPath();
-      } else if (path.getType() == "tnz") {
+      } else if (path.getType() == "tah") {
         palette =
             m_sceneHandle->getScene()->getProperties()->getCleanupPalette();
         path = TFilePath();

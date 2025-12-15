@@ -1486,8 +1486,8 @@ bool IoCmd::saveScene(const TFilePath &path, int flags) {
 
   assert(!path.isEmpty());
   TFilePath scenePath                      = path;
-  if (scenePath.getType() == "") scenePath = scenePath.withType("tnz");
-  if (scenePath.getType() != "tnz") {
+  if (scenePath.getType() == "") scenePath = scenePath.withType("tah");
+  if (scenePath.getType() != "tah") {
     error(
         QObject::tr("%1 has an invalid file extension.").arg(toQString(path)));
     return false;
@@ -1943,8 +1943,8 @@ bool IoCmd::loadScene(const TFilePath &path, bool updateRecentFile,
   TFilePath scenePath                      = path;
   bool importScene                         = false;
   bool isXdts                              = scenePath.getType() == "xdts";
-  if (scenePath.getType() == "") scenePath = scenePath.withType("tnz");
-  if (scenePath.getType() != "tnz" && !isXdts) {
+  if (scenePath.getType() == "") scenePath = scenePath.withType("tah");
+  if (scenePath.getType() != "tah" && !isXdts) {
     QString msg;
     msg = QObject::tr("File %1 doesn't look like a TOONZ Scene")
               .arg(QString::fromStdWString(scenePath.getWideString()));
@@ -2215,7 +2215,7 @@ bool IoCmd::loadScene() {
     std::vector<TFilePath> files;
     fileSelection->getSelectedFiles(files);
     if (files.size() == 1 && files[0] != TFilePath() &&
-        files[0].getType() == "tnz")
+        files[0].getType() == "tah")
       return loadScene(files[0]);
   }
 
@@ -2331,7 +2331,7 @@ bool IoCmd::loadSubScene() {
 
     if (args.resourceDatas.size() == 1 &&
         args.resourceDatas[0].m_path != TFilePath() &&
-        args.resourceDatas[0].m_path.getType() == "tnz") {
+        args.resourceDatas[0].m_path.getType() == "tah") {
       loadResources(args);
       return true;
     }
@@ -2339,7 +2339,7 @@ bool IoCmd::loadSubScene() {
     static LoadSubScenePopup *popup = 0;
     if (!popup) {
       popup = new LoadSubScenePopup();
-      popup->addFilterType("tnz");
+      popup->addFilterType("tah");
     }
     int ret = popup->exec();
     if (ret == QDialog::Accepted) {
@@ -2358,7 +2358,7 @@ bool IoCmd::loadSubScene(const TFilePath &scenePath) {
 
   if (args.resourceDatas.size() == 1 &&
       args.resourceDatas[0].m_path != TFilePath() &&
-      args.resourceDatas[0].m_path.getType() == "tnz") {
+      args.resourceDatas[0].m_path.getType() == "tah") {
     loadResources(args);
     return true;
   }

@@ -1038,7 +1038,7 @@ void StudioPaletteTreeViewer::startDragDrop() {
     TFilePath path = getItemPath(items[i]);
     if (!path.isEmpty() &&
         (path.getType() == "tpl" || path.getType() == "pli" ||
-         path.getType() == "tlv" || path.getType() == "tnz"))
+         path.getType() == "tlv" || path.getType() == "tah"))
       urls.append(pathToUrl(path));
   }
   if (urls.isEmpty()) return;
@@ -1067,7 +1067,7 @@ void StudioPaletteTreeViewer::dragEnterEvent(QDragEnterEvent *event) {
       TFilePath path(url.toLocalFile().toStdWString());
       if (!path.isEmpty() && isInStudioPalette(path) &&
           (path.getType() == "tpl" || path.getType() == "pli" ||
-           path.getType() == "tlv" || path.getType() == "tnz")) {
+           path.getType() == "tlv" || path.getType() == "tah")) {
         isPalette = true;
         break;
       }

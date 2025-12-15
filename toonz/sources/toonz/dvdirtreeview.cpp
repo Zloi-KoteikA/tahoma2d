@@ -479,10 +479,10 @@ void DvDirTreeView::contextMenuEvent(QContextMenuEvent *e) {
         dynamic_cast<DvDirVersionControlProjectNode *>(node);
     QAction *action;
     if (vcNode->isUnderVersionControl()) {
-      if (vcProjectNode || (fileExists && pathType == "tnz")) {
+      if (vcProjectNode || (fileExists && pathType == "tah")) {
         DvItemListModel::Status status = DvItemListModel::VC_None;
         // Check Version Control Status
-        if (pathType == "tnz") {
+        if (pathType == "tah") {
           DvDirVersionControlNode *parent =
               dynamic_cast<DvDirVersionControlNode *>(vcNode->getParent());
           status = getItemVersionControlStatus(parent, path);
@@ -525,7 +525,7 @@ void DvDirTreeView::contextMenuEvent(QContextMenuEvent *e) {
                 SLOT(deleteCurrentVersionControlNode()));
       }
     }
-    if (pathType != "tnz" && vcNode->isUnderVersionControl()) {
+    if (pathType != "tah" && vcNode->isUnderVersionControl()) {
       menu.addSeparator();
 
       action = menu.addAction(tr("Refresh"));
@@ -720,7 +720,7 @@ void DvDirTreeView::updateVersionControl(DvDirVersionControlNode *node) {
     // Check if the path exist, otherwise, it is a missing folder / file that
     // has to be get.
     TFilePath path   = node->getPath();
-    bool isSceneFile = path.getType() == "tnz";
+    bool isSceneFile = path.getType() == "tah";
     if (TFileStatus(path).doesExist() && !isSceneFile)
       vc->update(this, toQString(node->getPath()), QStringList("."), 0);
     else {
@@ -769,7 +769,7 @@ void DvDirTreeView::putVersionControl(DvDirVersionControlNode *node) {
   }
 
   TFilePath path   = node->getPath();
-  bool isSceneFile = path.getType() == "tnz";
+  bool isSceneFile = path.getType() == "tah";
 
   if (node->isUnderVersionControl() && !isSceneFile) {
     QStringList files;
@@ -794,7 +794,7 @@ void DvDirTreeView::cleanupVersionControl(DvDirVersionControlNode *node) {
   if (!node) return;
 
   TFilePath path   = node->getPath();
-  bool isSceneFile = path.getType() == "tnz";
+  bool isSceneFile = path.getType() == "tah";
   if (isSceneFile) return;
 
   VersionControl *vc = VersionControl::instance();
@@ -814,7 +814,7 @@ void DvDirTreeView::purgeVersionControl(DvDirVersionControlNode *node) {
   if (!node) return;
 
   TFilePath path   = node->getPath();
-  bool isSceneFile = path.getType() == "tnz";
+  bool isSceneFile = path.getType() == "tah";
   if (isSceneFile) return;
 
   VersionControl *vc = VersionControl::instance();
@@ -848,8 +848,8 @@ void DvDirTreeView::deleteVersionControl(DvDirVersionControlNode *node) {
   }
 
   TFilePath path   = node->getPath();
-  bool isSceneFile = path.getType() == "tnz";
-  if (path.getType() == "tnz")
+  bool isSceneFile = path.getType() == "tah";
+  if (path.getType() == "tah")
     vc->deleteFiles(this, toQString(parentNode->getPath()),
                     QStringList(QString::fromStdWString(node->getName())));
   else if (path.getType() == "")
@@ -915,7 +915,7 @@ void DvDirTreeView::refreshVersionControl(DvDirVersionControlNode *node,
     }
   } else if (node) {
     TFilePath path   = node->getPath();
-    bool isSceneFile = path.getType() == "tnz";
+    bool isSceneFile = path.getType() == "tah";
 
     QString nodePath = toQString(node->getPath());
     if (!isSceneFile) {
@@ -1010,7 +1010,7 @@ void DvDirTreeView::editCurrentVersionControlNode() {
   if (!vcNode) return;
 
   TFilePath path = vcNode->getPath();
-  if (path.getType() == "tnz") {
+  if (path.getType() == "tah") {
     QStringList files;
     files.append(QString::fromStdWString(vcNode->getName()));
 
@@ -1064,7 +1064,7 @@ void DvDirTreeView::unlockCurrentVersionControlNode() {
   if (!vcNode) return;
 
   TFilePath path = vcNode->getPath();
-  if (path.getType() == "tnz") {
+  if (path.getType() == "tah") {
     QStringList files;
     files.append(QString::fromStdWString(vcNode->getName()));
 
@@ -1117,7 +1117,7 @@ void DvDirTreeView::revertCurrentVersionControlNode() {
   if (!vcNode) return;
 
   TFilePath path = vcNode->getPath();
-  if (path.getType() == "tnz") {
+  if (path.getType() == "tah") {
     QStringList files;
     files.append(QString::fromStdWString(vcNode->getName()));
 

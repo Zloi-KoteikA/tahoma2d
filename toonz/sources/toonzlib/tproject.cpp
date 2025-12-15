@@ -537,7 +537,7 @@ int TProject::getFolderIndexFromPath(const TFilePath &folderDir) {
       if (i > 0 && a.substr(0, i) != b.substr(0, i)) continue;
       if (k < blen && (j >= alen || a.substr(j) != b.substr(k))) continue;
       wstring v = b.substr(i, k - i);
-      TFilePath scene(v + L".tnz");
+      TFilePath scene(v + L".tah");
       if (sceneDependentScenePath)
         scene = scenePath + scene.getWideName() + scene;
       else

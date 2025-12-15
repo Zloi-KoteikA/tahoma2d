@@ -95,7 +95,7 @@ SVNUpdateAndLockDialog::SVNUpdateAndLockDialog(QWidget *parent,
 
   int fileSize = m_files.size();
   for (int i = 0; i < fileSize; i++) {
-    if (m_files.at(i).endsWith(".tnz")) {
+    if (m_files.at(i).endsWith(".tah")) {
       m_editSceneContentsCheckBox->show();
       break;
     }
@@ -353,7 +353,7 @@ void SVNUpdateAndLockDialog::onEditSceneContentsToggled(bool checked) {
     int fileSize = m_files.count();
     for (int i = 0; i < fileSize; i++) {
       QString fileName = m_files.at(i);
-      if (fileName.endsWith(".tnz"))
+      if (fileName.endsWith(".tah"))
         m_sceneResources.append(vc->getSceneContents(m_workingDir, fileName));
     }
   }

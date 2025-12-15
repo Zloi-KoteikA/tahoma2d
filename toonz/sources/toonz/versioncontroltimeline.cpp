@@ -125,7 +125,7 @@ SVNTimeline::SVNTimeline(QWidget *parent, const QString &workingDir,
   QHBoxLayout *checkBoxLayout = new QHBoxLayout;
   checkBoxLayout->setContentsMargins(0, 0, 0, 0);
   m_sceneContentsCheckBox = new QCheckBox(this);
-  m_sceneContentsCheckBox->setVisible(m_fileName.endsWith(".tnz"));
+  m_sceneContentsCheckBox->setVisible(m_fileName.endsWith(".tah"));
   connect(m_sceneContentsCheckBox, SIGNAL(toggled(bool)), this,
           SLOT(onSceneContentsToggled(bool)));
   m_sceneContentsCheckBox->setChecked(false);
@@ -289,7 +289,7 @@ void SVNTimeline::onLogDone(const QString &xmlResponse) {
       }
     }
     // Add sceneIcon (only for scene files)
-    else if (fp.getType() == "tnz") {
+    else if (fp.getType() == "tah") {
       TFilePath iconPath = ToonzScene::getIconPath(fp);
       if (TFileStatus(iconPath).doesExist()) {
         QDir dir(toQString(fp.getParentDir()));
@@ -434,7 +434,7 @@ QIcon SVNTimeline::createIcon(const QString &fileName) {
   QPixmap filePixmap(fileName);
 
   if (filePixmap.isNull()) {
-    if (type == "tnz" || type == "tab")
+    if (type == "tah" || type == "tab")
       filePixmap = rasterToQPixmap(
           IconGenerator::generateSceneFileIcon(path, iconSize, 0));
     else if (type == "pli")
@@ -610,7 +610,7 @@ void SVNTimeline::onStatusRetrieved(const QString &xmlResponse) {
   m_updateButton->show();
   m_updateToRevisionButton->show();
   m_timelineWidget->show();
-  if (m_fileName.endsWith(".tnz")) m_sceneContentsCheckBox->show();
+  if (m_fileName.endsWith(".tah")) m_sceneContentsCheckBox->show();
   m_waitingLabel->hide();
   m_textLabel->hide();
 }
@@ -635,7 +635,7 @@ void SVNTimeline::onUpdateDone() {
 
   m_updateButton->show();
   m_updateToRevisionButton->show();
-  if (m_fileName.endsWith(".tnz")) m_sceneContentsCheckBox->show();
+  if (m_fileName.endsWith(".tah")) m_sceneContentsCheckBox->show();
 
   QStringList args;
   args << "log" << m_fileName << "--xml";

@@ -614,7 +614,7 @@ void StartupPopup::onCreateButton() {
 
   TFilePath scenePath =
       TFilePath(m_pathFld->getPath()) +
-      TFilePath(m_nameFld->text().trimmed().toStdWString() + L".tnz");
+      TFilePath(m_nameFld->text().trimmed().toStdWString() + L".tah");
 
   if (!TSystem::doesExistFileOrLevel(TFilePath(m_pathFld->getPath()))) {
     QString question;

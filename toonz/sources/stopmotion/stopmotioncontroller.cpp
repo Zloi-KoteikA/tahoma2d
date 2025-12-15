@@ -651,7 +651,7 @@ void StopMotionSaveInFolderPopup::createSceneInFolder() {
   // save the scene
   TFilePath sceneFp =
       scene->decodeFilePath(fp) +
-      TFilePath(m_subFolderNameField->text().toStdWString()).withType("tnz");
+      TFilePath(m_subFolderNameField->text().toStdWString()).withType("tah");
   IoCmd::saveScene(sceneFp, 0);
 }
 

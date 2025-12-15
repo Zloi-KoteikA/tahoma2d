@@ -271,7 +271,7 @@ QString InfoViewerImp::getTypeString() {
     return "Vector Level";
   else if (ext == "mov" || ext == "avi" || ext == "3gp")
     return "Movie File";
-  else if (ext == "tnz")
+  else if (ext == "tah")
     return "Tahoma2D Scene";
   else if (ext == "tab")
     return "Tab Scene";
@@ -589,7 +589,7 @@ bool InfoViewerImp::setItem(const TLevelP &level, TPalette *palette,
     if (ext == "plt") {
       assert(!m_level && !m_palette);
       loadPalette(m_path);
-    } else if (ext == "tnz")
+    } else if (ext == "tah")
       setToonzSceneInfo();
   } else if (TFileType::getInfo(m_path) == TFileType::AUDIO_LEVEL) {
     setSoundInfo();

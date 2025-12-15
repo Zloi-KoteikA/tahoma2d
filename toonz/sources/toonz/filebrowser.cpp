@@ -582,7 +582,7 @@ void FileBrowser::refreshCurrentFolderItems() {
 
       // filter the file
       else if (m_filter.isEmpty()) {
-        if (it->getType() != "tnz" && it->getType() != "scr" &&
+        if (it->getType() != "tah" && it->getType() != "scr" &&
             it->getType() != "tnzbat" && it->getType() != "mpath" &&
             it->getType() != "curve" && it->getType() != "tpl" &&
             it->getType() != "macrofx" && it->getType() != "plugin" &&
@@ -753,7 +753,7 @@ void FileBrowser::setUnregisteredFolder(const TFilePath &fp) {
 
       // filtering
       else if (m_filter.isEmpty()) {
-        if (it->getType() != "tnz" && it->getType() != "scr" &&
+        if (it->getType() != "tah" && it->getType() != "scr" &&
             it->getType() != "tnzbat" && it->getType() != "mpath" &&
             it->getType() != "curve" && it->getType() != "tpl" &&
             TFileType::getInfo(*it) == TFileType::UNKNOW_FILE)
@@ -835,7 +835,7 @@ void FileBrowser::readInfo(Item &item) {
     item.m_modifiedDate = info.lastModified();
     item.m_fileType     = info.suffix();
     item.m_fileSize     = info.size();
-    if (fp.getType() == "tnz") {
+    if (fp.getType() == "tah") {
       ToonzScene scene;
       try {
         item.m_frameCount = scene.loadFrameCount(fp);
@@ -976,7 +976,7 @@ QVariant FileBrowser::getItemData(int index, DataType dataType,
 
 bool FileBrowser::isSceneItem(int index) const {
   return 0 <= index && index < (int)m_items.size() &&
-         m_items[index].m_path.getType() == "tnz";
+         m_items[index].m_path.getType() == "tah";
 }
 
 //-----------------------------------------------------------------------------
@@ -1026,7 +1026,7 @@ void FileBrowser::renameItem(int index, const QString &newName) {
     }
     m_itemViewer->update();
 
-    if (fp.getType() == "tnz") {
+    if (fp.getType() == "tah") {
       // ho cambiato il folder _files. Devo aggiornare il folder che lo contiene
       // nel tree view
       QModelIndex index = m_folderTreeView->currentIndex();
@@ -1074,7 +1074,7 @@ bool FileBrowser::renameFile(TFilePath &fp, QString newName) {
   try {
     TSystem::renameFileOrLevel_throw(newFp, fp, true);
     IconGenerator::instance()->remove(fp);
-    if (fp.getType() == "tnz") {
+    if (fp.getType() == "tah") {
       /* TFilePath folder = fp.getParentDir() + (fp.getName() + "_files");
 TFilePath newFolder = newFp.getParentDir() + (newFp.getName() + "_files");
 TSystem::renameFile(newFolder, folder);
@@ -1126,7 +1126,7 @@ QMenu *FileBrowser::getContextMenu(QWidget *parent, int index) {
     return menu;
   }
 
-  if (files.size() == 1 && files[0].getType() == "tnz") {
+  if (files.size() == 1 && files[0].getType() == "tah") {
     menu->addAction(cm->getAction(MI_LoadScene));
   }
 
@@ -1154,7 +1154,7 @@ QMenu *FileBrowser::getContextMenu(QWidget *parent, int index) {
 
   if (areResources) {
     QString title;
-    if (clickedFile != TFilePath() && clickedFile.getType() == "tnz")
+    if (clickedFile != TFilePath() && clickedFile.getType() == "tah")
       title = tr("Load As Sub-Scene");
     else
       title = tr("Load");
@@ -1175,7 +1175,7 @@ QMenu *FileBrowser::getContextMenu(QWidget *parent, int index) {
   menu->addAction(cm->getAction(MI_SelectAll));
   menu->addAction(cm->getAction(MI_FileInfo));
   if (!clickedFile.isEmpty() &&
-      (clickedFile.getType() == "tnz" || clickedFile.getType() == "tab")) {
+      (clickedFile.getType() == "tah" || clickedFile.getType() == "tab")) {
     menu->addSeparator();
     menu->addAction(cm->getAction(MI_AddToBatchRenderList));
     menu->addAction(cm->getAction(MI_AddToBatchCleanupList));
@@ -1208,7 +1208,7 @@ QMenu *FileBrowser::getContextMenu(QWidget *parent, int index) {
 
     if (!areFullcolor) menu->addSeparator();
   }
-  if (files.size() == 1 && files[0].getType() != "tnz") {
+  if (files.size() == 1 && files[0].getType() != "tah") {
     QAction *action =
         new QAction(QIcon(createQIcon("rename")), tr("Rename"), menu);
     ret = ret && connect(action, SIGNAL(triggered()), this,
@@ -1238,7 +1238,7 @@ QMenu *FileBrowser::getContextMenu(QWidget *parent, int index) {
   }
 #endif
 
-  if (!clickedFile.isEmpty() && (clickedFile.getType() == "tnz")) {
+  if (!clickedFile.isEmpty() && (clickedFile.getType() == "tah")) {
     menu->addSeparator();
     menu->addAction(cm->getAction(MI_CollectAssets));
     menu->addAction(cm->getAction(MI_ImportScenes));
@@ -2277,7 +2277,7 @@ void FileBrowser::enableDoubleClickToOpenScenes() {
 //-----------------------------------------------------------------------------
 
 void FileBrowser::tryToOpenScene(const TFilePath &filePath) {
-  if (filePath.getType() == "tnz") {
+  if (filePath.getType() == "tah") {
     IoCmd::loadScene(filePath);
   }
 }

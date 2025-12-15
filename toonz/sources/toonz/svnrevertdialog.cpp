@@ -128,7 +128,7 @@ void SVNRevertDialog::onStatusRetrieved(const QString &xmlResponse) {
 
   int fileSize = m_filesToRevert.size();
   for (int i = 0; i < fileSize; i++) {
-    if (m_filesToRevert.at(i).endsWith(".tnz")) {
+    if (m_filesToRevert.at(i).endsWith(".tah")) {
       if (m_revertSceneContentsCheckBox) m_revertSceneContentsCheckBox->show();
       break;
     }
@@ -295,7 +295,7 @@ void SVNRevertDialog::onRevertSceneContentsToggled(bool checked) {
     int fileSize = m_filesToRevert.count();
     for (int i = 0; i < fileSize; i++) {
       QString fileName = m_filesToRevert.at(i);
-      if (fileName.endsWith(".tnz")) {
+      if (fileName.endsWith(".tah")) {
         if (m_filesToRevert.contains(fileName))
           m_sceneResources.append(vc->getSceneContents(m_workingDir, fileName));
       }

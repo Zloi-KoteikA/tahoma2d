@@ -259,7 +259,7 @@ void FileBrowserPopup::onOkPressed() {
         return;
       }
     } else {
-      if (m_forSaving && m_browser->getFilterTypes().contains("tnz")) {
+      if (m_forSaving && m_browser->getFilterTypes().contains("tah")) {
         TProjectManager *pm = TProjectManager::instance();
         TFilePath currentPrjDir =
             pm->getCurrentProject()->getProjectPath().getParentDir();
@@ -534,7 +534,7 @@ TFilePath GenericSaveFilePopup::getPath() {
 
 LoadScenePopup::LoadScenePopup() : FileBrowserPopup(tr("Load Scene")) {
   setOkText(tr("Load"));
-  addFilterType("tnz");
+  addFilterType("tah");
   addFilterType("xdts");
 
   // set the initial current path according to the current module
@@ -549,7 +549,7 @@ bool LoadScenePopup::execute() {
 
   const TFilePath &fp = *m_selectedPaths.begin();
 
-  if (fp.getType() != "tnz" && fp.getType() != "xdts") {
+  if (fp.getType() != "tah" && fp.getType() != "xdts") {
     DVGui::error(toQString(fp) + tr(" is not a scene file."));
     return false;
   }
@@ -593,7 +593,7 @@ void LoadScenePopup::onFilePathDoubleClicked(const TFilePath &path) {
 LoadSubScenePopup::LoadSubScenePopup()
     : FileBrowserPopup(tr("Load Sub-Scene")) {
   setOkText(tr("Load"));
-  addFilterType("tnz");
+  addFilterType("tah");
   TFilePath scenePath =
       TProjectManager::instance()->getCurrentProject()->getScenesPath();
   setFolder(scenePath);
@@ -604,7 +604,7 @@ bool LoadSubScenePopup::execute() {
 
   const TFilePath &fp = *m_selectedPaths.begin();
 
-  if (fp.getType() != "tnz") {
+  if (fp.getType() != "tah") {
     DVGui::error(toQString(fp) + tr(" is not a scene file."));
     return false;
   }
@@ -632,7 +632,7 @@ void LoadSubScenePopup::showEvent(QShowEvent *e) {
 SaveSceneAsPopup::SaveSceneAsPopup()
     : FileBrowserPopup(tr("Save Scene"), Options(FOR_SAVING)) {
   setOkText(tr("Save"));
-  addFilterType("tnz");
+  addFilterType("tah");
   connect(m_nameField, SIGNAL(returnPressedNow()), m_okButton,
           SLOT(animateClick()));
 }
@@ -1012,7 +1012,7 @@ void LoadLevelPopup::updatePosTo() {
 
   int frameLength;
 
-  bool isScene = (QString::fromStdString(fp.getType()) == "tnz");
+  bool isScene = (QString::fromStdString(fp.getType()) == "tah");
 
   if (isScene) {  // scene does not consider frame suffixes
     xFrom = TFrameId(xFrom.getNumber());
@@ -1391,7 +1391,7 @@ void LoadLevelPopup::updateBottomGUI() {
     m_posTo->setText(m_posFrom->text());
     m_arrangementFrame->setEnabled(false);
     m_levelPropertiesFrame->setEnabled(false);
-  } else if (ext == "tnz") {
+  } else if (ext == "tah") {
     ToonzScene scene;
     scene.setScenePath(fp);
     int sceneLength = scene.getFrameCount();

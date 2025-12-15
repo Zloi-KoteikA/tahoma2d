@@ -36,7 +36,7 @@ void FileData::getFiles(TFilePath folder,
   for (i = 0; i < (int)m_files.size(); i++) {
     TFilePath oldPath = m_files[i];
     // Per ora non permettiamo il copia e incolla delle scene.
-    if (oldPath.getType() == "tnz") continue;
+    if (oldPath.getType() == "tah") continue;
     TFilePath path = folder + TFilePath(oldPath.getLevelNameW());
 
     if (!TSystem::doesExistFileOrLevel(oldPath)) {

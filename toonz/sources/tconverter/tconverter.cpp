@@ -417,7 +417,7 @@ int main(int argc, char *argv[]) {
     if (tnzName.isSelected()) {
       // Devo prendermi i settaggi degli "output setting" dalla scena!
       TFilePath tnzFilePath = tnzName.getValue();
-      if (tnzFilePath.getType() != "tnz") {
+      if (tnzFilePath.getType() != "tah") {
         msg = "Invalid scene file: conversion terminated!";
         cout << msg << endl;
         exit(1);

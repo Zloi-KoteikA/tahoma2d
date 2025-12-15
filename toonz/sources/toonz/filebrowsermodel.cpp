@@ -493,7 +493,7 @@ QList<TFilePath> DvDirVersionControlNode::getMissingFolders() const {
     if (s.m_item == "missing" ||
         (s.m_item == "none" && s.m_repoStatus == "added")) {
       TFilePath path(getPath() + TFilePath(s.m_path.toStdWString()));
-      if (path.getDots() == "" || path.getType() == "tnz") {
+      if (path.getDots() == "" || path.getType() == "tah") {
         QString currentFolderName =
             QString::fromStdWString(getPath().getWideName());
         if (currentFolderName != s.m_path) {
@@ -559,7 +559,7 @@ QPixmap DvDirVersionControlNode::getPixmap(bool isOpen) const {
       svgToPixmap(":Resources/browser_scene_close.svg"));
 
   if (TFileStatus(getPath()).doesExist()) {
-    if (getPath().getType() == "tnz")
+    if (getPath().getType() == "tah")
       return isOpen ? openSceneFolderPixmap : closeSceneFolderPixmap;
     else
       return isOpen ? openFolderPixmap : closeFolderPixmap;
@@ -612,7 +612,7 @@ QStringList DvDirVersionControlNode::refreshVersionControl(
 
     // Update also the status of the "scene" child folders
     TFilePath path(fileName.toStdWString());
-    if (path.getType() == "tnz") {
+    if (path.getType() == "tah") {
       DvDirVersionControlNode *childVcNode =
           dynamic_cast<DvDirVersionControlNode *>(
               getNodeByPath(nodePath + path));

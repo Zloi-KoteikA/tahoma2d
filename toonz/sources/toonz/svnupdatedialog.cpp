@@ -154,7 +154,7 @@ void SVNUpdateDialog::onStatusRetrieved(const QString &xmlResponse) {
   // Check if a scene files is found
   int fileSize = m_filesToUpdate.size();
   for (int i = 0; i < fileSize; i++) {
-    if (m_filesToUpdate.at(i).endsWith(".tnz")) {
+    if (m_filesToUpdate.at(i).endsWith(".tah")) {
       if (fileSize == 1)
         m_textLabel->setText(
             tr("%1 items to update.")
@@ -224,7 +224,7 @@ void SVNUpdateDialog::checkFiles() {
       m_filesWithConflict.prepend(s.m_path);
     else if (s.m_item == "none" || s.m_item == "missing" ||
              s.m_repoStatus == "modified" || s.m_repoStatus == "modified") {
-      if (s.m_path.endsWith(".tnz") &&
+      if (s.m_path.endsWith(".tah") &&
           (s.m_item == "missing" ||
            (s.m_item == "none" && s.m_repoStatus == "added"))) {
         TFilePath scenePath =
@@ -436,7 +436,7 @@ void SVNUpdateDialog::onUpdateSceneContentsToggled(bool checked) {
     int fileSize = m_filesToUpdate.count();
     for (int i = 0; i < fileSize; i++) {
       QString fileName = m_filesToUpdate.at(i);
-      if (fileName.endsWith(".tnz"))
+      if (fileName.endsWith(".tah"))
         m_sceneResources.append(vc->getSceneContents(m_workingDir, fileName));
     }
   }

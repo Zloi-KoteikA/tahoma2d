@@ -108,7 +108,7 @@ DvDirModelFileFolderNode *
 ExportSceneDvDirModelFileFolderNode::createExposeSceneNode(
     DvDirModelNode *parent, const TFilePath &path) {
   DvDirModelFileFolderNode *node;
-  if (path.getType() == "tnz")
+  if (path.getType() == "tah")
     return 0;
   else if (TProjectManager::instance()->isProject(path))
     node = new ExportSceneDvDirModelProjectNode(parent, path);
@@ -141,7 +141,7 @@ DvDirModelFileFolderNode *
 ExportSceneDvDirModelProjectNode::createExposeSceneNode(DvDirModelNode *parent,
                                                         const TFilePath &path) {
   DvDirModelFileFolderNode *node;
-  if (path.getType() == "tnz")
+  if (path.getType() == "tah")
     return 0;
   else {
     node = new ExportSceneDvDirModelFileFolderNode(parent, path);

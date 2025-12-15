@@ -64,7 +64,7 @@ void getFileFids(TFilePath path, std::vector<TFrameId> &fids) {
   QFileInfo info(QString::fromStdWString(path.getWideString()));
   TLevelP level;
   if (info.exists()) {
-    if (path.getType() == "tnz") {
+    if (path.getType() == "tah") {
       try {
         ToonzScene scene;
         scene.loadNoResources(path);

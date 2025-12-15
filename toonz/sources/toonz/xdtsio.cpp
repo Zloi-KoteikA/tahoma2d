@@ -522,7 +522,7 @@ bool XdtsIo::loadXdtsScene(ToonzScene *scene, const TFilePath &scenePath) {
   auto sceneProject = TProjectManager::instance()->loadSceneProject(scenePath);
   if (!sceneProject) return false;
   scene->setProject(sceneProject);
-  std::string sceneFileName = scenePath.getName() + ".tnz";
+  std::string sceneFileName = scenePath.getName() + ".tah";
   scene->setScenePath(scenePath.getParentDir() + sceneFileName);
   // set the current scene here in order to use $scenefolder node properly
   // in the file browser which opens from XDTSImportPopup

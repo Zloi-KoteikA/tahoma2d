@@ -156,7 +156,7 @@ TFilePath duplicate(const TFilePath &levelPath) {
   TFilePath levelPathOut = levelPath.withName(levelNameOut);
 
   try {
-    if (levelPath.getType() == "tnz")
+    if (levelPath.getType() == "tah")
       copyScene(levelPathOut, levelPath);
     else {
       TSystem::copyFileOrLevel_throw(levelPathOut, levelPath);

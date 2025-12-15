@@ -560,7 +560,7 @@ void ToonzScene::setUntitled() {
       name = baseName + std::to_string(count++);
     } while (TFileStatus(tempDir + name).doesExist());
   }
-  TFilePath fp = tempDir + name + (name + ".tnz");
+  TFilePath fp = tempDir + name + (name + ".tah");
   try {
     TSystem::touchParentDir(fp);
   } catch (...) {

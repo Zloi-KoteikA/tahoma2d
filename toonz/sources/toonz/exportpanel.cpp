@@ -670,7 +670,7 @@ void ClipListViewer::dragEnterEvent(QDragEnterEvent *event) {
   if (event->mimeData()->hasUrls()) {
     for (const QUrl &url : event->mimeData()->urls()) {
       TFilePath fp(url.toLocalFile().toStdString());
-      if (fp.getType() != "tnz") return;
+      if (fp.getType() != "tah") return;
     }
     setDropInsertionPoint(event->pos());
     event->setDropAction(Qt::CopyAction);
@@ -700,7 +700,7 @@ void ClipListViewer::dropEvent(QDropEvent *event) {
     if (j < 0) j = getItemCount();
     for (const QUrl &url : event->mimeData()->urls()) {
       TFilePath fp(url.toLocalFile().toStdString());
-      if (fp.getType() == "tnz") getController()->insertClipPath((j++), fp);
+      if (fp.getType() == "tah") getController()->insertClipPath((j++), fp);
     }
     event->setDropAction(Qt::CopyAction);
     event->acceptProposedAction();

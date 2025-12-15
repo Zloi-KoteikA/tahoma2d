@@ -1825,7 +1825,7 @@ void FlipBook::dragEnterEvent(QDragEnterEvent *e) {
   for (const QUrl &url : mimeData->urls()) {
     TFilePath fp(url.toLocalFile().toStdWString());
     std::string type = fp.getType();
-    if (type == "tzp" || type == "tzu" || type == "tnz" || type == "scr" ||
+    if (type == "tzp" || type == "tzu" || type == "tah" || type == "scr" ||
         type == "mesh")
       return;
   }
