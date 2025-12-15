@@ -162,7 +162,7 @@ $ cd ../../
 $ cd toonz
 $ mkdir build
 $ cd build
-$ cmake ../sources
+$ cmake ../sources -DWITH_TRANSLATION=OFF
 $ make -j$(nproc)
 ```
 
